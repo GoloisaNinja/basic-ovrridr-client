@@ -9,7 +9,6 @@ const LandingPage = () => {
         password: ""
     })
     const baseURL = import.meta.env.VITE_SERVER_URL;
-    console.log(baseURL);
     const login = async (e) => {
         e.preventDefault();
         const dbCommand = {
