@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import buildBasicRequest from "../../utils/buildBasicRequest.js";
 const Form = ({ permissions, setResponse }) => {
     const [queryDecision, setQueryDecision] = useState("");
+    const baseURL = import.meta.env.VITE_SERVER_URL;
     const buildQuery = async () => {
         let tempDecision = "";
         const radios = document.getElementsByTagName('input')
@@ -29,7 +30,7 @@ const Form = ({ permissions, setResponse }) => {
         })
         data.body = JSON.stringify(body)
         try {
-            const response = await fetch("http://localhost:5000/",data)
+            const response = await fetch(`${baseURL}`,data)
             if (response.ok) {
                 let parsedResponse = await response.json();
                 setResponse(parsedResponse);

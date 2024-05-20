@@ -8,26 +8,8 @@ const LandingPage = () => {
         email: "",
         password: ""
     })
-    // const getQuery = async (e) => {
-    //     e.preventDefault();
-    //     const data = {
-    //         method: "POST",
-    //         mode: "cors",
-    //         credentials: "same-origin",
-    //         headers: {
-    //             "Content-type": "application/json",
-    //         },
-    //         body: JSON.stringify({query: {}, collection: "user"})
-    //     }
-    //     try {
-    //         const response = await fetch("http://localhost:5000",data)
-    //         const parsedResponse = await response.json();
-    //         console.log(parsedResponse);
-    //     } catch(e) {
-    //         console.log(e)
-    //     }
-    //
-    // }
+    const baseURL = import.meta.env.VITE_SERVER_URL;
+    console.log(baseURL);
     const login = async (e) => {
         e.preventDefault();
         const dbCommand = {
@@ -48,7 +30,7 @@ const LandingPage = () => {
             body: JSON.stringify(body)
         }
         try {
-            const response = await fetch("http://localhost:5000/login",data)
+            const response = await fetch(`${baseURL}/login`,data)
             if (response.ok) {
                 let parsedResponse = await response.json();
                 navigate("/dashboard", {state: parsedResponse});
